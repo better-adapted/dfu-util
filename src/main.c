@@ -207,6 +207,7 @@ static void print_version(void)
 	printf(PACKAGE_STRING "\n\n");
 	printf("Copyright 2005-2009 Weston Schmidt, Harald Welte and OpenMoko Inc.\n"
 	       "Copyright 2010-2021 Tormod Volden and Stefan Schmidt\n"
+		   "Modified Verison by SperrinLogic.com\n"
 	       "This program is Free Software and has ABSOLUTELY NO WARRANTY\n"
 	       "Please report bugs to " PACKAGE_BUGREPORT "\n\n");
 }
