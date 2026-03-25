@@ -331,9 +331,16 @@ found_dfu:
 					ret = get_string_descriptor_ascii(devh,
 					    intf->iInterface, (void *)alt_name, MAX_DESC_STR_LEN);
 				else
+				{
+					warnx("intf->iInterface==0");
 					ret = -1;
+				}
 				if (ret < 1)
-					strcpy(alt_name, "UNKNOWN");
+				{
+					char temp[100]={};
+					sprintf(temp,"UNKOWN %d",res);
+					strcpy(alt_name, temp);
+				}
 				if (desc->iSerialNumber != 0) {
 					if (quirks & QUIRK_UTF8_SERIAL) {
 						ret = get_utf8_string_descriptor(devh, desc->iSerialNumber,
@@ -348,7 +355,11 @@ found_dfu:
 					ret = -1;
 				}
 				if (ret < 1)
-					strcpy(serial_name, "UNKNOWN");
+				{
+					char temp[100]={};
+					sprintf(temp,"UNKOWN %d",res);
+					strcpy(serial_name, temp);
+				}
 				libusb_close(devh);
 
 				if (dfu_mode &&
