@@ -338,7 +338,7 @@ found_dfu:
 				if (ret < 1)
 				{
 					char temp[100]={};
-					sprintf(temp,"UNKOWN %d",res);
+					sprintf(temp,"UNKOWN %d",ret);
 					strcpy(alt_name, temp);
 				}
 				if (desc->iSerialNumber != 0) {
@@ -357,7 +357,7 @@ found_dfu:
 				if (ret < 1)
 				{
 					char temp[100]={};
-					sprintf(temp,"UNKOWN %d",res);
+					sprintf(temp,"UNKOWN %d",ret);
 					strcpy(serial_name, temp);
 				}
 				libusb_close(devh);
