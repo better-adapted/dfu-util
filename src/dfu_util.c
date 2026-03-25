@@ -321,6 +321,7 @@ found_dfu:
 					continue;
 
 				ret = libusb_open(dev, &devh);
+				int ret2=255;
 				if (ret) {
 					warnx("Cannot open DFU device %04x:%04x found on devnum %i (%s)",
 					      desc->idVendor, desc->idProduct, libusb_get_device_address(dev),
@@ -332,13 +333,13 @@ found_dfu:
 					    intf->iInterface, (void *)alt_name, MAX_DESC_STR_LEN);
 				else
 				{
-					warnx("intf->iInterface==0");
+					ret2=ret;
 					ret = -1;
 				}
 				if (ret < 1)
 				{
 					char temp[100]={};
-					sprintf(temp,"UNKOWN %d",ret);
+					sprintf(temp,"UNKNOWN %d %d",ret,ret2);
 					strcpy(alt_name, temp);
 				}
 				if (desc->iSerialNumber != 0) {
@@ -352,12 +353,13 @@ found_dfu:
 						    (void *)serial_name, MAX_DESC_STR_LEN);
 					}
 				} else {
+					ret2 = ret;
 					ret = -1;
 				}
 				if (ret < 1)
 				{
 					char temp[100]={};
-					sprintf(temp,"UNKOWN %d",ret);
+					sprintf(temp,"UNKNOWN %d %d",ret, ret2);
 					strcpy(serial_name, temp);
 				}
 				libusb_close(devh);
